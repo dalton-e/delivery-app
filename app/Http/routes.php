@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('yakisoba', function() {
+    $repository = $this->app->make('DeliveryApp\Repositories\CategoryRepository');
+
+    return $repository->all();
+});

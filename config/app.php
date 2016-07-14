@@ -156,6 +156,10 @@ return [
         DeliveryApp\Providers\EventServiceProvider::class,
         DeliveryApp\Providers\RouteServiceProvider::class,
 
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        DeliveryApp\Providers\RepositoryServiceProvider::class,
+        Bestmomo\Scafold\ScafoldServiceProvider::class,
+
     ],
 
     /*
