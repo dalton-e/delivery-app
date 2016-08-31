@@ -33,4 +33,27 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function create(array $attributes)
+    {
+        $attributes['user']['password'] = bcrypt('123456');
+        $user = $this->model->user()->getRelated()->newInstance($attributes['user']);
+        $user->save();
+
+        $attributes['user_id'] = $user->id;
+        $client = $this->model->newInstance($attributes);
+        $client->save();
+    }
+
+    public function update(array $attributes, $id)
+    {
+        $client = $this->model->findOrFail($id);
+        $client->fill($attributes);
+        $client->save();
+
+        $user = $client->user()->first();
+        $user->fill($attributes['user']);
+        $client->user()->update($attributes['user']);
+    }
+
 }
