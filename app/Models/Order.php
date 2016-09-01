@@ -14,16 +14,35 @@ class Order extends Model implements Transformable
         'client_id', 'deliveryman_id', 'total', 'date', 'status',
     ];
 
+    protected $nullable = [
+        'deliveryman_id'
+    ];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::saving(function($model) {
+            self::setNullables($model);
+        });
+    }
+
     public function items() {
         return $this->hasMany(OrderItem::class);
     }
 
     public function client() {
-        return $this->belongsTo(User::class, 'client_id');
+        return $this->belongsTo(Client::class);
     }
 
     public function deliveryman() {
-        return $this->belongsTo(User::class, 'deliveryman_id');
+        return $this->belongsTo(User::class, 'deliveryman_id', 'id');
     }
 
+    private static function setNullables($model) {
+        foreach($model->nullable as $field) {
+            if(empty($model->{$field})) {
+                $model->{$field} = null;
+            }
+        }
+    }
 }

@@ -43,3 +43,20 @@ $factory->define(DeliveryApp\Models\Product::class, function(Faker\Generator $fa
         'price' => $faker->numberBetween(10, 50)
     ];
 });
+
+$factory->define(DeliveryApp\Models\Order::class, function(Faker\Generator $faker) {
+    return [
+        'client_id' => $faker->numberBetween(1, 10),
+        'total' => $faker->numberBetween(100, 5000),
+        'date' => $faker->date(),
+        'status' => 0
+    ];
+});
+
+$factory->define(DeliveryApp\Models\OrderItem::class, function(Faker\Generator $faker) {
+    return [
+        'product_id' => $faker->numberBetween(1, 25),
+        'quantity' => $faker->numberBetween(1, 3),
+        'price' => $faker->numberBetween(10, 200),
+    ];
+});

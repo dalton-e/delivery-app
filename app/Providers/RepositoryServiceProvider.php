@@ -26,5 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('DeliveryApp\Repositories\CategoryRepository', 'DeliveryApp\Repositories\CategoryRepositoryEloquent');
         $this->app->bind('DeliveryApp\Repositories\ProductRepository', 'DeliveryApp\Repositories\ProductRepositoryEloquent');
         $this->app->bind('DeliveryApp\Repositories\ClientRepository', 'DeliveryApp\Repositories\ClientRepositoryEloquent');
+        $this->app->bind('DeliveryApp\Repositories\OrderRepository', 'DeliveryApp\Repositories\OrderRepositoryEloquent');
+        $this->app->bind('DeliveryApp\Repositories\UserRepository', 'DeliveryApp\Repositories\UserRepositoryEloquent');
     }
 }

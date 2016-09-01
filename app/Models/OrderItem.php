@@ -19,7 +19,7 @@ class OrderItem extends Model implements Transformable
     }
 
     public function product() {
-        return $this->hasOne(Product::class);
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
 }
